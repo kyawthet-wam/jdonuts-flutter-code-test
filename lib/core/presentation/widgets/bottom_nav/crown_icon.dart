@@ -20,6 +20,9 @@ class _CrownPainter extends CustomPainter {
 
   static const double _strokeRatio = 0.09;
 
+  /// Radius of the small star-like dot in the crown's centre.
+  static const double _starRatio = 0.06;
+
   @override
   void paint(Canvas canvas, Size size) {
     final w = size.width;
@@ -40,6 +43,11 @@ class _CrownPainter extends CustomPainter {
       ..strokeJoin = StrokeJoin.round;
     canvas
       ..drawPath(path, paint)
+      ..drawCircle(
+        Offset(w * 0.5, h * 0.6),
+        w * _starRatio,
+        Paint()..color = color,
+      )
       ..drawLine(
         Offset(w * 0.16, h * 0.9),
         Offset(w * 0.84, h * 0.9),

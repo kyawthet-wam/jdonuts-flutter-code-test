@@ -23,6 +23,7 @@ const double _shadowBlur = 16;
 /// Space between the pill's edge and its slot's edge, so neighbouring icons
 /// never touch it.
 const double _pillInset = 4;
+const double _pillBorder = 1.5;
 const double _iconSize = 24;
 
 /// Floating blue rounded bar with white icons. The active tab is a pink pill showing
@@ -125,6 +126,8 @@ class _Pill extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.accent,
         borderRadius: BorderRadius.circular(AppRadius.pill),
+        // Thin white rim keeps the pill crisp against the blue bar.
+        border: Border.all(color: AppColors.surface, width: _pillBorder),
       ),
     );
   }
