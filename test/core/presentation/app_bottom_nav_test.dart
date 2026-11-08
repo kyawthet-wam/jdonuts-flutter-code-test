@@ -87,8 +87,8 @@ void main() {
     );
     final label = tester.getRect(find.text('Home'));
 
-    expect(selectedIcon.left - pill.left, greaterThanOrEqualTo(10));
-    expect(pill.right - label.right, greaterThanOrEqualTo(10));
+    expect(selectedIcon.left - pill.left, greaterThanOrEqualTo(8));
+    expect(pill.right - label.right, greaterThanOrEqualTo(8));
   });
 
   testWidgets('the next tab keeps a clear gap from the pill', (tester) async {

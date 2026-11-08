@@ -14,10 +14,10 @@ class BottomNavItem {
   final String label;
 }
 
-const double _barPadding = AppSpacing.xs;
-const double _pillHeight = 40;
+const double _barPadding = AppSpacing.sm;
+const double _pillHeight = 36;
 const double _barRadius = 32;
-const double _activeSlotWidth = 116;
+const double _activeSlotWidth = 108;
 const double _shadowBlur = 16;
 
 /// Space between the pill's edge and its slot's edge, so neighbouring icons
@@ -26,8 +26,10 @@ const double _pillInset = 4;
 const double _pillBorder = 1.5;
 const double _iconSize = 24;
 
-/// Floating blue rounded bar with white icons. The active tab is a pink pill showing
-/// its label; the pill slides to the newly selected tab.
+/// Blue bar with white icons, inset from the screen sides, rounded only at the
+/// top and flush with the bottom edge (it fills the home-indicator area).
+/// The active tab is a pink pill showing its label; the pill slides to the
+/// newly selected tab.
 ///
 /// Why one pill that moves (instead of each tab drawing its own): it reads as
 /// a single object travelling between tabs, which is the requested motion.
@@ -45,25 +47,21 @@ class AppBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Floating: inset from the screen edges so page content shows around and
-    // behind the bar (the shell sets `extendBody`).
-    return SafeArea(
-      top: false,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.md,
-          0,
-          AppSpacing.md,
-          AppSpacing.sm,
+    // The shell sets `extendBody`, so page content runs behind the bar's
+    // rounded top corners and its soft shadow.
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+      child: DecoratedBox(
+        decoration: const BoxDecoration(
+          color: AppColors.primary,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(_barRadius)),
+          boxShadow: [
+            BoxShadow(color: AppColors.shadow, blurRadius: _shadowBlur),
+          ],
         ),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(_barRadius),
-            boxShadow: const [
-              BoxShadow(color: AppColors.shadow, blurRadius: _shadowBlur),
-            ],
-          ),
+        // Inside the decoration so the blue also covers the safe area below.
+        child: SafeArea(
+          top: false,
           child: Padding(
             padding: const EdgeInsets.all(_barPadding),
             child: LayoutBuilder(builder: _buildBar),
