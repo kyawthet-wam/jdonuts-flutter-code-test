@@ -111,9 +111,7 @@ class _ProductRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = section.kind.isSeasonal
-        ? _ProductCardStyle.wide
-        : _ProductCardStyle.tile;
+    final style = _ProductCardStyleX.of(section.kind);
     return SizedBox(
       height: context.scaledHeight(style.rowHeight),
       child: ListView.separated(

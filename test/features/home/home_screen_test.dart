@@ -41,6 +41,29 @@ void main() {
       expect(find.text('50% off'), findsWidgets);
     });
 
+    testApp('popular tiles are taller than order again tiles', (tester) async {
+      await pumpApp(tester, signedIn: true);
+      await tester.dragUntilVisible(
+        find.text("Santa's favorite cookies set"),
+        find.byType(ListView).first,
+        const Offset(0, -300),
+      );
+
+      double heroHeight(String tag) => tester
+          .getSize(
+            find.byWidgetPredicate(
+              (w) => w is Hero && w.tag == tag,
+              skipOffstage: false,
+            ),
+          )
+          .height;
+
+      expect(
+        heroHeight('product-s_popular-p_strawberry'),
+        greaterThan(heroHeight('product-s_order_again-p_cookies')),
+      );
+    });
+
     testApp('says how many shops are nearby', (tester) async {
       await pumpApp(tester, signedIn: true);
       await tester.dragUntilVisible(
