@@ -8,7 +8,7 @@ An offline-first slice of the J'Donuts customer app: onboarding with fake login 
 | Dart | **3.13.7** |
 | Platforms | Android and iOS (portrait only) |
 | Backend | none required; an optional local mock server is included |
-| Time spent | _fill in before sending_ |
+| Time spent | about half a day |
 
 ## Run it
 
