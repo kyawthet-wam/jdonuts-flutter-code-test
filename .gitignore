@@ -33,3 +33,8 @@ coverage/
 # Client-owned designs: never commit
 *.pdf
 designs/
+
+# AI tooling (local only)
+.mcp.json
+.agents/
+.config/dart_skills/
