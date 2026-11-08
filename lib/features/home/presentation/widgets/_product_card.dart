@@ -67,7 +67,7 @@ class _ProductCard extends StatelessWidget {
               product.name,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: AppTypography.body.copyWith(fontWeight: FontWeight.w700),
+              style: AppTypography.productName,
             ),
           ],
         ),

@@ -90,6 +90,20 @@ void main() {
       expect(navTop - shopsBlock.bottom, lessThan(1));
     });
 
+    testApp('section titles are clearly larger than product names', (
+      tester,
+    ) async {
+      await pumpApp(tester, signedIn: true);
+
+      double size(String text) =>
+          tester.widget<Text>(find.text(text).first).style!.fontSize!;
+
+      expect(
+        size('Seasonal specials'),
+        greaterThan(size('Mistletoe Romance box') * 1.5),
+      );
+    });
+
     testApp('says how many shops are nearby', (tester) async {
       await pumpApp(tester, signedIn: true);
       await tester.dragUntilVisible(

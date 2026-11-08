@@ -81,7 +81,7 @@ class _SectionTitle extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(child: Text(title, style: AppTypography.subtitle)),
+          Expanded(child: Text(title, style: AppTypography.sectionTitle)),
           Semantics(
             button: true,
             label: AppLocalizations.of(context).seeAll(title),
