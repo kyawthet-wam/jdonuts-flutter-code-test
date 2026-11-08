@@ -55,7 +55,11 @@ class _ShopsContent extends StatelessWidget {
               const SizedBox(height: AppSpacing.sm),
               SizedBox(
                 width: 150,
-                child: PrimaryButton(label: l10n.exploreNow, onPressed: () {}),
+                child: PrimaryButton(
+                  label: l10n.exploreNow,
+                  variant: PrimaryButtonVariant.onBrand,
+                  onPressed: () {},
+                ),
               ),
             ],
           ),

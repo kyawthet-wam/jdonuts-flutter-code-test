@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jdonuts/core/theme/app_colors.dart';
 import 'package:jdonuts/features/home/data/home_providers.dart';
 
 import '../../support/fake_connectivity.dart';
@@ -62,6 +63,31 @@ void main() {
         heroHeight('product-s_popular-p_strawberry'),
         greaterThan(heroHeight('product-s_order_again-p_cookies')),
       );
+    });
+
+    testApp('the shops block runs to the bottom with no gap below it', (
+      tester,
+    ) async {
+      await pumpApp(tester, signedIn: true);
+      await tester.dragUntilVisible(
+        find.textContaining("J'Donut shops"),
+        find.byType(ListView).first,
+        const Offset(0, -300),
+      );
+      await tester.drag(find.byType(ListView).first, const Offset(0, -2000));
+      await tester.pumpAndSettle();
+
+      final shopsBlock = tester.getRect(
+        find.byWidgetPredicate(
+          (w) =>
+              w is Container &&
+              w.decoration is BoxDecoration &&
+              (w.decoration! as BoxDecoration).color == AppColors.primary,
+        ),
+      );
+      final navTop = tester.getTopLeft(find.byType(NavigationBar)).dy;
+
+      expect(navTop - shopsBlock.bottom, lessThan(1));
     });
 
     testApp('says how many shops are nearby', (tester) async {

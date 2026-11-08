@@ -54,12 +54,7 @@ class HomeScreen extends ConsumerWidget {
         onRefresh: () => _refresh(context, ref),
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const [
-            _HeaderSection(),
-            _SectionsList(),
-            _ShopsSection(),
-            SizedBox(height: AppSpacing.xxl * 2),
-          ],
+          children: const [_HeaderSection(), _SectionsList(), _ShopsSection()],
         ),
       ),
     );
