@@ -17,8 +17,12 @@ class BottomNavItem {
 const double _barPadding = AppSpacing.xs;
 const double _pillHeight = 40;
 const double _barRadius = 32;
-const double _activeSlotWidth = 108;
+const double _activeSlotWidth = 116;
 const double _shadowBlur = 16;
+
+/// Space between the pill's edge and its slot's edge, so neighbouring icons
+/// never touch it.
+const double _pillInset = 4;
 const double _iconSize = 24;
 
 /// Floating blue rounded bar with white icons. The active tab is a pink pill showing
@@ -85,8 +89,8 @@ class AppBottomNav extends StatelessWidget {
           AnimatedPositioned(
             duration: duration,
             curve: AppMotion.emphasized,
-            left: pillLeft,
-            width: active,
+            left: pillLeft + _pillInset,
+            width: active - _pillInset * 2,
             top: 0,
             bottom: 0,
             child: const _Pill(),
@@ -146,9 +150,11 @@ class _Slot extends StatelessWidget {
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
-        child: ClipRect(
-          child: OverflowBox(
-            maxWidth: double.infinity,
+        // Centred, and scaled down (never overflowing) while the slot is still
+        // narrow mid-slide.
+        child: Center(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
             child: ExcludeSemantics(
               child: Row(
                 mainAxisSize: MainAxisSize.min,

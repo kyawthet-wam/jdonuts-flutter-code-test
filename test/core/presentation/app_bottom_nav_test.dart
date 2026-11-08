@@ -66,7 +66,39 @@ double _pillX(WidgetTester tester) {
   return tester.getTopLeft(pill).dx;
 }
 
+Rect _pillRect(WidgetTester tester) {
+  final pill = find.byWidgetPredicate(
+    (w) =>
+        w is DecoratedBox &&
+        w.decoration is BoxDecoration &&
+        (w.decoration as BoxDecoration).color == AppColors.accent,
+  );
+  return tester.getRect(pill);
+}
+
 void main() {
+  testWidgets('the selected icon is inside the pill with breathing room', (
+    tester,
+  ) async {
+    await tester.pumpWidget(_host());
+    final pill = _pillRect(tester);
+    final selectedIcon = tester.getRect(
+      find.byIcon(Icons.circle_outlined).first,
+    );
+    final label = tester.getRect(find.text('Home'));
+
+    expect(selectedIcon.left - pill.left, greaterThanOrEqualTo(10));
+    expect(pill.right - label.right, greaterThanOrEqualTo(10));
+  });
+
+  testWidgets('the next tab keeps a clear gap from the pill', (tester) async {
+    await tester.pumpWidget(_host());
+    final pill = _pillRect(tester);
+    final nextIcon = tester.getRect(find.byType(CrownIcon));
+
+    expect(nextIcon.left - pill.right, greaterThanOrEqualTo(8));
+  });
+
   testWidgets('shows the label only for the selected tab', (tester) async {
     await tester.pumpWidget(_host());
 
