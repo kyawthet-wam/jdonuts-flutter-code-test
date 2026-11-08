@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -102,6 +103,8 @@ class _LoginRow extends StatelessWidget {
   }
 }
 
+const double _iconSize = 24;
+
 /// Google, Apple and Facebook: no real integration, each opens a sheet.
 class _SocialRow extends StatelessWidget {
   const _SocialRow();
@@ -114,20 +117,21 @@ class _SocialRow extends StatelessWidget {
       children: [
         _SocialButton(
           label: l10n.continueWithGoogle,
-          child: Text(
-            'G',
-            style: AppTypography.subtitle.copyWith(color: AppColors.error),
-          ),
+          child: SvgPicture.asset('assets/icons/google.svg', width: _iconSize),
         ),
         _SocialButton(
           label: l10n.continueWithApple,
-          child: const Icon(Icons.apple, color: AppColors.textPrimary),
+          child: const Icon(
+            Icons.apple,
+            color: AppColors.textPrimary,
+            size: _iconSize + AppSpacing.xxs,
+          ),
         ),
         _SocialButton(
           label: l10n.continueWithFacebook,
-          child: Text(
-            'f',
-            style: AppTypography.title.copyWith(color: AppColors.primaryDark),
+          child: SvgPicture.asset(
+            'assets/icons/facebook.svg',
+            width: _iconSize,
           ),
         ),
       ],
