@@ -125,6 +125,20 @@ void main() {
     });
   });
 
+  group('name step', () {
+    testWidgets('does not autocorrect or suggest in either name field', (
+      t,
+    ) async {
+      await _reachOtpStep(t);
+      await _passOtp(t);
+
+      for (final field in t.widgetList<TextField>(find.byType(TextField))) {
+        expect(field.autocorrect, isFalse);
+        expect(field.enableSuggestions, isFalse);
+      }
+    });
+  });
+
   group('registration', () {
     testWidgets('rejects 31 April on the date of birth step', (t) async {
       await _reachOtpStep(t);

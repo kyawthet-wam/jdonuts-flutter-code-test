@@ -29,6 +29,8 @@ class AppTextField extends HookWidget {
     this.onSubmitted,
     this.textCapitalization = TextCapitalization.none,
     this.autofillHints,
+    this.autocorrect = true,
+    this.enableSuggestions = true,
   });
 
   final TextEditingController controller;
@@ -45,6 +47,10 @@ class AppTextField extends HookWidget {
   final ValueChanged<String>? onSubmitted;
   final TextCapitalization textCapitalization;
   final Iterable<String>? autofillHints;
+
+  /// Turn both off for names: correction mangles Myanmar and proper nouns.
+  final bool autocorrect;
+  final bool enableSuggestions;
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +139,8 @@ class _Input extends StatelessWidget {
             textInputAction: field.textInputAction,
             textCapitalization: field.textCapitalization,
             autofillHints: field.autofillHints,
+            autocorrect: field.autocorrect,
+            enableSuggestions: field.enableSuggestions,
             style: AppTypography.body,
             decoration: InputDecoration(
               hintText: field.hint,
