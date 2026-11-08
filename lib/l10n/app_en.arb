@@ -1,5 +1,13 @@
 {
   "@@locale": "en",
   "appTitle": "J'Donuts",
-  "@appTitle": {"description": "Application name"}
+  "@appTitle": {"description": "Application name"},
+  "comingSoon": "Coming soon",
+  "settingsTitle": "Settings",
+  "logOut": "Log out",
+  "navHome": "Home",
+  "navRewards": "Reward",
+  "navExplore": "Explore",
+  "navWallet": "Wallet",
+  "navSettings": "Settings"
 }
