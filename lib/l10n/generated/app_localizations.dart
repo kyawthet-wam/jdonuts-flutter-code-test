@@ -262,6 +262,12 @@ abstract class AppLocalizations {
   /// **'Increase quantity'**
   String get increaseQuantity;
 
+  /// No description provided for @refreshFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t refresh right now. Showing saved data.'**
+  String get refreshFailed;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:

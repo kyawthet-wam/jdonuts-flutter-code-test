@@ -35,6 +35,7 @@
   "quantityLabel": "Quantity",
   "decreaseQuantity": "Decrease quantity",
   "increaseQuantity": "Increase quantity",
+  "refreshFailed": "Couldn't refresh right now. Showing saved data.",
   "settingsTitle": "Settings",
   "logOut": "Log out",
   "navHome": "Home",

@@ -45,7 +45,7 @@ class _Pager extends HookWidget {
     }, [reduce, banners.length]);
 
     return SizedBox(
-      height: _bannerHeight,
+      height: context.scaledHeight(_bannerHeight),
       child: PageView.builder(
         controller: controller,
         itemCount: banners.length,
@@ -87,6 +87,8 @@ class _BannerCard extends StatelessWidget {
                   widthFactor: 0.6,
                   child: Text(
                     banner.title,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: AppTypography.subtitle.copyWith(
                       color: AppColors.textOnPrimary,
                     ),

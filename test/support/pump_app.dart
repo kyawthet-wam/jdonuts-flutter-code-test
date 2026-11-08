@@ -48,10 +48,14 @@ Future<void> pumpApp(
   FakeConnectivityService? connectivity,
   bool signedIn = false,
   List<Override> overrides = const [],
+  Size logicalSize = const Size(390, 844),
+  double textScale = 1,
 }) async {
-  tester.view.physicalSize = const Size(1170, 2532);
+  tester.view.physicalSize = logicalSize * 3;
   tester.view.devicePixelRatio = 3;
+  tester.platformDispatcher.textScaleFactorTestValue = textScale;
   addTearDown(tester.view.reset);
+  addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
   final keyValueStore =
       store ??
       (signedIn

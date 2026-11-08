@@ -5,7 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../core/connectivity/connectivity_providers.dart';
 import '../../../core/format/number_format.dart';
+import '../../../core/layout/text_scale.dart';
 import '../../../core/motion/app_motion.dart';
 import '../../../core/presentation/widgets/app_image.dart';
 import '../../../core/presentation/widgets/press_scale.dart';
@@ -49,7 +51,7 @@ class HomeScreen extends ConsumerWidget {
       backgroundColor: AppColors.surfaceMuted,
       body: RefreshIndicator(
         edgeOffset: MediaQuery.paddingOf(context).top,
-        onRefresh: () => ref.read(syncControllerProvider.notifier).refresh(),
+        onRefresh: () => _refresh(context, ref),
         child: ListView(
           padding: EdgeInsets.zero,
           children: const [
@@ -60,6 +62,18 @@ class HomeScreen extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  /// Pull-to-refresh. A server failure is reported (the screen keeps showing
+  /// saved data); while offline the banner already says so, so stay quiet.
+  Future<void> _refresh(BuildContext context, WidgetRef ref) async {
+    final result = await ref.read(syncControllerProvider.notifier).refresh();
+    if (!context.mounted || result.isOk) return;
+    final offline = !(ref.read(isOnlineProvider).value ?? true);
+    if (offline) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(AppLocalizations.of(context).refreshFailed)),
     );
   }
 }

@@ -1,6 +1,7 @@
 part of '../home_screen.dart';
 
 const double _shopCardWidth = 260;
+const double _shopListHeight = 230;
 
 /// Blue "shops near you" block. Explore now and Order online are display only.
 class _ShopsSection extends ConsumerWidget {
@@ -61,7 +62,7 @@ class _ShopsContent extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.md),
         SizedBox(
-          height: 230,
+          height: context.scaledHeight(_shopListHeight),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(

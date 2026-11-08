@@ -115,7 +115,7 @@ class _ProductRow extends StatelessWidget {
         ? _ProductCardStyle.wide
         : _ProductCardStyle.tile;
     return SizedBox(
-      height: style.rowHeight,
+      height: context.scaledHeight(style.rowHeight),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(

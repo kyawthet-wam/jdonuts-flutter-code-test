@@ -18,3 +18,7 @@
 - Add to cart goes through the `AddToCart` use case (rejects out-of-range quantities) into the Drift cart, which merges lines and persists across restarts. The button confirms with "ADDED TO CART" for 1.5s.
 
 Tests: `test/features/home/home_screen_test.dart`, `test/features/product/*`. Widget tests use `testApp` (test/support/pump_app.dart): the database is seeded up front because asset I/O can't complete in fake-async time, and a final pump flushes the zero-length timer Drift schedules when streams are cancelled.
+
+## Refresh errors and text scale
+- Pull-to-refresh: a server/timeout failure shows "Couldn't refresh right now. Showing saved data." and the screen keeps its local data. While offline it stays quiet because the offline banner already says so; with no server configured it is a silent no-op. Background refreshes never show messages.
+- Text scale: fixed-height rows (banner, product rows, shop cards) use `context.scaledHeight(base)` so they grow with the user's text size instead of overflowing. `test/features/layout_test.dart` renders onboarding, phone step, Home (scrolled end to end) and Product detail at 360x640 and 440x956 with text scale 1.3; the test font is wider than real fonts, so this is a strict check.

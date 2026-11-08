@@ -114,6 +114,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get increaseQuantity => 'Increase quantity';
 
   @override
+  String get refreshFailed =>
+      'Couldn\'t refresh right now. Showing saved data.';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
