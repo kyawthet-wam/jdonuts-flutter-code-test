@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "member": {
+    "id": "member_1",
+    "name": "Hania",
+    "photoAsset": "assets/images/avatar_member.png",
+    "tier": "silver",
+    "totalPoints": 680000,
+    "pointsToNextTier": 500,
+    "tierProgress": 0.75,
+    "unreadNotifications": 2
+  },
+  "banners": [
+    {"id": "b_central", "badge": "New shop", "title": "We are now at Central Boulevard", "imageAsset": "assets/images/banner_central.png", "imageUrl": null},
+    {"id": "b_hot", "badge": "50% off", "title": "Hot deals this week", "imageAsset": "assets/images/banner_hot.png", "imageUrl": null},
+    {"id": "b_festive", "badge": "Festive", "title": "Christmas boxes are here", "imageAsset": "assets/images/banner_festive.png", "imageUrl": null}
+  ],
+  "products": [
+    {"id": "p_coconut", "code": "JD022123", "name": "Coconut Donut", "priceMmk": 3200, "isNew": true, "discountPercent": null, "imageUrl": null, "imageAsset": "assets/images/donut_coconut.png", "description": "Enjoy our scrumptious donuts – soft, sweet, and satisfying in every bite. Choose from classic glazed, rich chocolate, or fun sprinkles. Dive into deliciousness now!"},
+    {"id": "p_mistletoe", "code": "JD030101", "name": "Mistletoe Romance box", "priceMmk": 24000, "isNew": false, "discountPercent": 50, "imageUrl": null, "imageAsset": "assets/images/box_mistletoe.png", "description": "A romantic box of six hand-glazed donuts in pink and white, made for sharing."},
+    {"id": "p_christmas", "code": "JD030102", "name": "Christmas Mix Family box", "priceMmk": 36000, "isNew": false, "discountPercent": 50, "imageUrl": null, "imageAsset": "assets/images/box_christmas.png", "description": "Twelve festive donuts in red, green and gold: the whole family's favourite."},
+    {"id": "p_winter", "code": "JD030103", "name": "Winter Glaze box", "priceMmk": 22000, "isNew": true, "discountPercent": 30, "imageUrl": null, "imageAsset": "assets/images/box_winter.png", "description": "Cool blue and snowy white glazes for a frosty treat."},
+    {"id": "p_strawberry", "code": "JD011005", "name": "Strawberry Chocolate Donuts", "priceMmk": 3500, "isNew": false, "discountPercent": null, "imageUrl": null, "imageAsset": "assets/images/donut_strawberry.png", "description": "Fruity strawberry icing finished with a chocolate drizzle."},
+    {"id": "p_daigona", "code": "JD051210", "name": "Daigona Creamy Coffee", "priceMmk": 4500, "isNew": false, "discountPercent": null, "imageUrl": null, "imageAsset": "assets/images/coffee_daigona.png", "description": "Whipped dalgona cream over cold milk and espresso."},
+    {"id": "p_choco", "code": "JD011006", "name": "Double Choco Donut", "priceMmk": 3300, "isNew": false, "discountPercent": null, "imageUrl": null, "imageAsset": "assets/images/donut_choco.png", "description": "Dark chocolate icing with a caramel drizzle."},
+    {"id": "p_cookies", "code": "JD061101", "name": "Santa's favorite cookies set", "priceMmk": 9000, "isNew": false, "discountPercent": 20, "imageUrl": null, "imageAsset": "assets/images/cookies_set.png", "description": "Chunky chocolate-chip cookies baked fresh each morning."},
+    {"id": "p_americano", "code": "JD051101", "name": "Iced Americano", "priceMmk": 3000, "isNew": false, "discountPercent": 20, "imageUrl": null, "imageAsset": "assets/images/coffee_americano.png", "description": "Bold espresso over ice."}
+  ],
+  "sections": [
+    {"id": "s_seasonal", "title": "Seasonal specials", "kind": "seasonal", "productIds": ["p_mistletoe", "p_christmas", "p_winter"]},
+    {"id": "s_popular", "title": "Popular", "kind": "popular", "productIds": ["p_strawberry", "p_daigona", "p_coconut", "p_choco"]},
+    {"id": "s_order_again", "title": "Order again", "kind": "orderAgain", "productIds": ["p_cookies", "p_americano", "p_choco"]}
+  ],
+  "shops": [
+    {"id": "sh_myaynigone", "name": "Myaynigone J'Donut", "address": "2972 Pyay Road, Sanchaung Township, Yangon.", "imageAsset": "assets/images/shop_myaynigone.png", "imageUrl": null},
+    {"id": "sh_townships", "name": "Myay Ni Gone Branch 2", "address": "2972 Pyay Road, Sanchaung Township, Yangon.", "imageAsset": "assets/images/shop_townships.png", "imageUrl": null},
+    {"id": "sh_central", "name": "Central Boulevard J'Donut", "address": "Central Boulevard, Tamwe Township, Yangon.", "imageAsset": "assets/images/shop_central.png", "imageUrl": null},
+    {"id": "sh_mall", "name": "City Mall J'Donut", "address": "Ground Floor, City Mall, Yangon.", "imageAsset": "assets/images/shop_mall.png", "imageUrl": null}
+  ],
+  "challenges": [
+    {"id": "c_coco_done", "title": "Eat 4 Coco donuts", "kind": "donut", "current": 4, "target": 4, "rewardPoints": 100},
+    {"id": "c_coco_progress", "title": "Eat 4 Coco donuts", "kind": "donut", "current": 1, "target": 4, "rewardPoints": 100},
+    {"id": "c_americano", "title": "Drink 12 cups americano", "kind": "coffee", "current": 9, "target": 12, "rewardPoints": 100}
+  ]
+}
