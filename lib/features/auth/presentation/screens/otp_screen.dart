@@ -34,7 +34,9 @@ class OtpScreen extends HookConsumerWidget {
       final outcome = await notifier.submitOtp(value);
       if (!context.mounted) return;
       if (outcome.isContinueRegistration) {
-        return unawaited(context.push(AppRoutes.name));
+        // Replace, not push: a verified code must not be re-enterable via back.
+        context.pushReplacement(AppRoutes.name);
+        return;
       }
       if (outcome.isWrong || outcome.isLocked) {
         controller.clear();

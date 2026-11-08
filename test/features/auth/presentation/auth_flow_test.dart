@@ -126,6 +126,18 @@ void main() {
   });
 
   group('name step', () {
+    testWidgets('back from name skips the verified OTP screen', (t) async {
+      await _reachOtpStep(t);
+      await _passOtp(t);
+      expect(find.text("What's your name?"), findsOneWidget);
+
+      await t.tap(find.byIcon(Icons.arrow_back));
+      await t.pumpAndSettle();
+
+      expect(find.text('Verify your number'), findsNothing);
+      expect(find.text('Enter your phone number'), findsOneWidget);
+    });
+
     testWidgets('does not autocorrect or suggest in either name field', (
       t,
     ) async {
