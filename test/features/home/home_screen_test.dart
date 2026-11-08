@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jdonuts/core/presentation/widgets/bottom_nav/app_bottom_nav.dart';
 import 'package:jdonuts/core/theme/app_colors.dart';
 import 'package:jdonuts/features/home/data/home_providers.dart';
 
@@ -85,7 +86,7 @@ void main() {
               (w.decoration! as BoxDecoration).color == AppColors.primary,
         ),
       );
-      final navTop = tester.getTopLeft(find.byType(NavigationBar)).dy;
+      final navTop = tester.getTopLeft(find.byType(AppBottomNav)).dy;
 
       expect(navTop - shopsBlock.bottom, lessThan(1));
     });

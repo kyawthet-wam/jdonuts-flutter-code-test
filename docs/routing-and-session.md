@@ -10,3 +10,6 @@
 - Tabs: `StatefulShellRoute.indexedStack` with Home, Rewards, Explore, Wallet, Settings. Explore and Wallet are `PlaceholderScreen`; Settings holds Log out. `/product/:id` sits outside the shell.
 
 Tests: `test/core/router/auth_redirect_test.dart` (every rule), `session_routing_test.dart` (real router: relaunch logged out/in, log out from Settings). Widget tests that use the fake repository need `tester.runAsync` for setup because `Future.delayed` never fires in fake-async time.
+
+## Bottom navigation
+`AppShell` uses `AppBottomNav` (`core/presentation/widgets/bottom_nav/`): a blue rounded-top bar with white icons. The selected tab is a pink pill with its label; one pill travels between tabs (`AnimatedPositioned`, with the tab slots resizing in step, durations from `AppMotion`), so it reads as a single object sliding. Reduce Motion makes it jump. Height and the selected slot width scale with the text size. The Reward tab uses a painted `CrownIcon` (Material has no crown). Tests: `test/core/presentation/app_bottom_nav_test.dart`.

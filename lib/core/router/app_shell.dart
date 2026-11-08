@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../l10n/generated/app_localizations.dart';
+import '../presentation/widgets/bottom_nav/app_bottom_nav.dart';
+import '../presentation/widgets/bottom_nav/crown_icon.dart';
 import '../presentation/widgets/offline_banner.dart';
 
-/// Hosts the five tabs. The styled sliding-pill bar replaces this later.
+/// Hosts the five tabs with the sliding-pill bottom bar.
 class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.navigationShell});
 
@@ -15,31 +17,32 @@ class AppShell extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: OfflineBannerLayout(child: navigationShell),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: navigationShell.currentIndex,
-        onDestinationSelected: (index) => navigationShell.goBranch(
+      bottomNavigationBar: AppBottomNav(
+        currentIndex: navigationShell.currentIndex,
+        onTap: (index) => navigationShell.goBranch(
           index,
           initialLocation: index == navigationShell.currentIndex,
         ),
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.home_outlined),
+        items: [
+          BottomNavItem(
+            iconBuilder: (c) => materialNavIcon(Icons.home_outlined, c),
             label: l10n.navHome,
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.workspace_premium_outlined),
+          BottomNavItem(
+            iconBuilder: (c) => CrownIcon(color: c),
             label: l10n.navRewards,
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.explore_outlined),
+          BottomNavItem(
+            iconBuilder: (c) => materialNavIcon(Icons.catching_pokemon, c),
             label: l10n.navExplore,
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.account_balance_wallet_outlined),
+          BottomNavItem(
+            iconBuilder: (c) =>
+                materialNavIcon(Icons.account_balance_wallet_outlined, c),
             label: l10n.navWallet,
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.settings_outlined),
+          BottomNavItem(
+            iconBuilder: (c) => materialNavIcon(Icons.settings_outlined, c),
             label: l10n.navSettings,
           ),
         ],
