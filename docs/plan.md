@@ -80,13 +80,13 @@ Tests: unit (validators, use cases), widget (login/registration validation), one
 2. [x] Dependencies + analyzer (riverpod_lint plugin; no custom_lint), l10n, folders.
 3. [x] Core foundations: design tokens/theme, motion file, Result/Failure, app shell (ProviderScope, theme, l10n).
 4. [x] Task 1 domain: validators + unit tests.
-5. [~] Task 1 auth. Done: repository, use cases, fake impl, secure session, session notifier, router + redirect guard (+ tests), placeholder screens. TODO: real screens 1-7 (shared widgets, onboarding, phone, OTP input, name, dob, welcome), registration flow state, progress ring, widget tests.
-6. [ ] Data layer: Drift schema + migrations, JSON seed, image assets, repositories, connectivity, background refresh, optional mock server + Dio client.
-7. [ ] Task 2: Home, Product detail, cart.
-8. [ ] Task 3: Rewards painters, animations, bottom nav.
-9. [ ] Motion pass across the flow + Reduce Motion.
-10. [ ] Tests (unit/widget/integration), analyze clean, text scale 1.3 check.
-11. [ ] Delivery: release APK, iOS simulator .app zip, README (run steps, Flutter/Dart versions, architecture + folder map, Riverpod rationale, offline strategy, animations, fake OTP `123456`, known gaps, time spent, links to docs/), feature docs in `docs/`.
+5. [x] Task 1 auth: repository, use cases, fake impl, secure session, router + redirect guard, screens 1-7, OTP input, progress ring, widget tests.
+6. [x] Data layer: Drift schema + migrations, JSON seed, image assets, repositories, connectivity, background refresh, optional mock server + Dio client.
+7. [x] Task 2: Home, Product detail, cart.
+8. [x] Task 3: Rewards painters, animations, bottom nav.
+9. [x] Motion pass across the flow + Reduce Motion.
+10. [x] Tests (unit/widget/integration), analyze clean, text scale 1.3 check.
+11. [~] Delivery (README, iOS simulator .app done; release APK blocked by a Gradle download failure on the dev machine; screen recording and email are the author's): release APK, iOS simulator .app zip, README (run steps, Flutter/Dart versions, architecture + folder map, Riverpod rationale, offline strategy, animations, fake OTP `123456`, known gaps, time spent, links to docs/), feature docs in `docs/`.
 
 User tasks: screen recording (2-4 min: register, log out, log in, Home, Product, Rewards, repeat in airplane mode), push to public repo, accept Android licences (`fvm flutter doctor --android-licenses`), email submission.
 

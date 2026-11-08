@@ -38,3 +38,6 @@ designs/
 .mcp.json
 .agents/
 .config/dart_skills/
+
+# Build deliverables (attached to the submission email, not committed)
+dist/
