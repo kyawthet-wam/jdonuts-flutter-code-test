@@ -12,31 +12,30 @@ sealed class Result<T> {
 
   /// The value when successful, otherwise null.
   T? get valueOrNull => switch (this) {
-        Ok<T>(:final value) => value,
-        Err<T>() => null,
-      };
+    Ok<T>(:final value) => value,
+    Err<T>() => null,
+  };
 
   /// The failure when unsuccessful, otherwise null.
   Failure? get failureOrNull => switch (this) {
-        Ok<T>() => null,
-        Err<T>(:final failure) => failure,
-      };
+    Ok<T>() => null,
+    Err<T>(:final failure) => failure,
+  };
 
   /// Collapses both cases into one value.
   R when<R>({
     required R Function(T value) ok,
     required R Function(Failure failure) err,
-  }) =>
-      switch (this) {
-        Ok<T>(:final value) => ok(value),
-        Err<T>(:final failure) => err(failure),
-      };
+  }) => switch (this) {
+    Ok<T>(:final value) => ok(value),
+    Err<T>(:final failure) => err(failure),
+  };
 
   /// Transforms a successful value, leaving failures untouched.
   Result<R> map<R>(R Function(T value) transform) => switch (this) {
-        Ok<T>(:final value) => Result.ok(transform(value)),
-        Err<T>(:final failure) => Result.err(failure),
-      };
+    Ok<T>(:final value) => Result.ok(transform(value)),
+    Err<T>(:final failure) => Result.err(failure),
+  };
 }
 
 final class Ok<T> extends Result<T> {

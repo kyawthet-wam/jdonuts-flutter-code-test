@@ -40,13 +40,13 @@ DateOfBirthError? validateDateOfBirth({
 DateTime? _realDateOrNull(int year, int month, int day) {
   if (year < earliestBirthYear) return null;
   final date = DateTime(year, month, day);
-  final unchanged =
-      date.year == year && date.month == month && date.day == day;
+  final unchanged = date.year == year && date.month == month && date.day == day;
   return unchanged ? date : null;
 }
 
 int _ageOn(DateTime today, DateTime birth) {
-  final hadBirthday = today.month > birth.month ||
+  final hadBirthday =
+      today.month > birth.month ||
       (today.month == birth.month && today.day >= birth.day);
   return today.year - birth.year - (hadBirthday ? 0 : 1);
 }

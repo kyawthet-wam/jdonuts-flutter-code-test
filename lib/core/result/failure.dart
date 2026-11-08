@@ -34,12 +34,16 @@ final class AuthFailure extends Failure {
   final AuthFailureReason reason;
 }
 
-enum AuthFailureReason { userNotFound, userAlreadyExists, invalidCode }
+enum AuthFailureReason { userNotFound, invalidCode }
 
 extension AuthFailureReasonX on AuthFailureReason {
   bool get isUserNotFound => this == AuthFailureReason.userNotFound;
-  bool get isUserAlreadyExists => this == AuthFailureReason.userAlreadyExists;
   bool get isInvalidCode => this == AuthFailureReason.invalidCode;
+}
+
+/// Input rejected by a validator before reaching the repository.
+final class InvalidInputFailure extends Failure {
+  const InvalidInputFailure([super.message = 'Invalid input']);
 }
 
 /// Anything unexpected; carries the original error for logging.

@@ -14,8 +14,9 @@ const int _maxSubscriberDigits = 9;
 
 /// Matches a Myanmar mobile number once the leading zero is removed: a 9
 /// followed by 7 to 9 more digits.
-final RegExp _nationalNumber =
-    RegExp('^9\\d{$_minSubscriberDigits,$_maxSubscriberDigits}\$');
+final RegExp _nationalNumber = RegExp(
+  '^9\\d{$_minSubscriberDigits,$_maxSubscriberDigits}\$',
+);
 
 /// Strips spaces, dashes and one leading zero so users can type the number
 /// the way they write it locally (`09 254-135 592`).

@@ -32,22 +32,22 @@ abstract final class AppTheme {
   }
 
   static InputDecorationTheme get _inputTheme => InputDecorationTheme(
-        filled: true,
-        fillColor: AppColors.surface,
-        hintStyle: AppTypography.body.copyWith(color: AppColors.textHint),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md,
-          vertical: AppSpacing.md,
-        ),
-        border: _border(Colors.transparent),
-        enabledBorder: _border(Colors.transparent),
-        focusedBorder: _border(AppColors.primary),
-        errorBorder: _border(AppColors.error),
-        focusedErrorBorder: _border(AppColors.error),
-      );
+    filled: true,
+    fillColor: AppColors.surface,
+    hintStyle: AppTypography.body.copyWith(color: AppColors.textHint),
+    contentPadding: const EdgeInsets.symmetric(
+      horizontal: AppSpacing.md,
+      vertical: AppSpacing.md,
+    ),
+    border: _border(Colors.transparent),
+    enabledBorder: _border(Colors.transparent),
+    focusedBorder: _border(AppColors.primary),
+    errorBorder: _border(AppColors.error),
+    focusedErrorBorder: _border(AppColors.error),
+  );
 
   static OutlineInputBorder _border(Color color) => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        borderSide: BorderSide(color: color, width: 1.5),
-      );
+    borderRadius: BorderRadius.circular(AppRadius.md),
+    borderSide: BorderSide(color: color, width: 1.5),
+  );
 }
