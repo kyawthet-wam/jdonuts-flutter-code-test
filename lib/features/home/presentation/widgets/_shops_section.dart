@@ -12,7 +12,11 @@ class _ShopsSection extends ConsumerWidget {
     final shops = ref.watch(homeShopsProvider);
     return Container(
       margin: const EdgeInsets.only(top: AppSpacing.lg),
-      padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
+      // Bottom inset keeps the cards clear of the floating tab bar.
+      padding: EdgeInsets.only(
+        top: AppSpacing.lg,
+        bottom: AppSpacing.lg + MediaQuery.paddingOf(context).bottom,
+      ),
       decoration: const BoxDecoration(
         color: AppColors.primary,
         borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.lg)),

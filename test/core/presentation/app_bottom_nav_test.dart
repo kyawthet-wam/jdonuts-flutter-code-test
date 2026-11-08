@@ -56,16 +56,14 @@ class _NavState extends State<_Nav> {
 }
 
 /// Rendered x of the pill (the widget's `left` is only the animation target).
-double _pillLeft(WidgetTester tester) {
+double _pillX(WidgetTester tester) {
   final pill = find.byWidgetPredicate(
     (w) =>
         w is DecoratedBox &&
         w.decoration is BoxDecoration &&
         (w.decoration as BoxDecoration).color == AppColors.accent,
   );
-  return tester.getTopLeft(pill).dx -
-      tester.getTopLeft(find.byType(AppBottomNav)).dx -
-      12; // the bar's horizontal padding
+  return tester.getTopLeft(pill).dx;
 }
 
 void main() {
@@ -92,29 +90,30 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(_host());
-    final before = _pillLeft(tester);
+    final before = _pillX(tester);
 
     await tester.tap(find.byType(CrownIcon));
     await tester.pump(); // builds the frame that starts the animation
     await tester.pump(const Duration(milliseconds: 200));
-    final midway = _pillLeft(tester);
+    final midway = _pillX(tester);
     await tester.pumpAndSettle();
-    final after = _pillLeft(tester);
+    final after = _pillX(tester);
 
-    expect(before, closeTo(0, 0.5));
     expect(midway, greaterThan(before));
     expect(after, greaterThan(midway));
   });
 
   testWidgets('the pill returns to the first tab', (tester) async {
     await tester.pumpWidget(_host());
+    final home = _pillX(tester);
     await tester.tap(find.byType(CrownIcon));
     await tester.pumpAndSettle();
+    expect(_pillX(tester), greaterThan(home));
 
     await tester.tap(find.byIcon(Icons.circle_outlined).first);
     await tester.pumpAndSettle();
 
-    expect(_pillLeft(tester), closeTo(0, 0.5));
+    expect(_pillX(tester), closeTo(home, 0.5));
   });
 
   testWidgets('selected tab is exposed to accessibility', (tester) async {

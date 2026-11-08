@@ -16,6 +16,8 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
+      // The bar floats, so the page runs behind it; screens pad their bottom.
+      extendBody: true,
       body: OfflineBannerLayout(child: navigationShell),
       bottomNavigationBar: AppBottomNav(
         currentIndex: navigationShell.currentIndex,

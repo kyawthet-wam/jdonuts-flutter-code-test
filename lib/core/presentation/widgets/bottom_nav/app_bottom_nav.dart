@@ -14,13 +14,14 @@ class BottomNavItem {
   final String label;
 }
 
-const double _barPadding = AppSpacing.sm;
-const double _pillHeight = 44;
-const double _barRadius = 28;
-const double _activeSlotWidth = 116;
+const double _barPadding = AppSpacing.xs;
+const double _pillHeight = 40;
+const double _barRadius = 32;
+const double _activeSlotWidth = 108;
+const double _shadowBlur = 16;
 const double _iconSize = 24;
 
-/// Blue rounded bar with white icons. The active tab is a pink pill showing
+/// Floating blue rounded bar with white icons. The active tab is a pink pill showing
 /// its label; the pill slides to the newly selected tab.
 ///
 /// Why one pill that moves (instead of each tab drawing its own): it reads as
@@ -39,16 +40,29 @@ class AppBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(_barRadius)),
-      ),
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.all(_barPadding),
-          child: LayoutBuilder(builder: _buildBar),
+    // Floating: inset from the screen edges so page content shows around and
+    // behind the bar (the shell sets `extendBody`).
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.md,
+          0,
+          AppSpacing.md,
+          AppSpacing.sm,
+        ),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(_barRadius),
+            boxShadow: const [
+              BoxShadow(color: AppColors.shadow, blurRadius: _shadowBlur),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(_barPadding),
+            child: LayoutBuilder(builder: _buildBar),
+          ),
         ),
       ),
     );

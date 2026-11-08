@@ -66,30 +66,43 @@ void main() {
       );
     });
 
-    testApp('the shops block runs to the bottom with no gap below it', (
-      tester,
-    ) async {
-      await pumpApp(tester, signedIn: true);
-      await tester.dragUntilVisible(
-        find.textContaining("J'Donut shops"),
-        find.byType(ListView).first,
-        const Offset(0, -300),
-      );
-      await tester.drag(find.byType(ListView).first, const Offset(0, -2000));
-      await tester.pumpAndSettle();
+    testApp(
+      'the shops block runs behind the floating bar, content stays clear',
+      (tester) async {
+        await pumpApp(tester, signedIn: true);
+        await tester.dragUntilVisible(
+          find.textContaining("J'Donut shops"),
+          find.byType(ListView).first,
+          const Offset(0, -300),
+        );
+        await tester.drag(find.byType(ListView).first, const Offset(0, -2000));
+        await tester.pumpAndSettle();
 
-      final shopsBlock = tester.getRect(
-        find.byWidgetPredicate(
-          (w) =>
-              w is Container &&
-              w.decoration is BoxDecoration &&
-              (w.decoration! as BoxDecoration).color == AppColors.primary,
-        ),
-      );
-      final navTop = tester.getTopLeft(find.byType(AppBottomNav)).dy;
+        final shopsBlock = tester.getRect(
+          find.byWidgetPredicate(
+            (w) =>
+                w is Container &&
+                w.decoration is BoxDecoration &&
+                (w.decoration! as BoxDecoration).color == AppColors.primary,
+          ),
+        );
+        final navTop = tester.getTopLeft(find.byType(AppBottomNav)).dy;
+        final lastCardText = tester
+            .getBottomLeft(find.text('Order Online').first)
+            .dy;
 
-      expect(navTop - shopsBlock.bottom, lessThan(1));
-    });
+        expect(
+          shopsBlock.bottom,
+          greaterThanOrEqualTo(navTop),
+          reason: 'no grey gap under the shops block',
+        );
+        expect(
+          lastCardText,
+          lessThan(navTop),
+          reason: 'shop cards are not hidden by the bar',
+        );
+      },
+    );
 
     testApp('section titles are clearly larger than product names', (
       tester,
