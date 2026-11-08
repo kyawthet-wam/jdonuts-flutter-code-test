@@ -50,6 +50,7 @@ Future<void> pumpApp(
   List<Override> overrides = const [],
   Size logicalSize = const Size(390, 844),
   double textScale = 1,
+  bool settle = true,
 }) async {
   tester.view.physicalSize = logicalSize * 3;
   tester.view.devicePixelRatio = 3;
@@ -82,7 +83,7 @@ Future<void> pumpApp(
       child: const JDonutsApp(),
     ),
   );
-  await tester.pumpAndSettle();
+  if (settle) await tester.pumpAndSettle();
 }
 
 /// Navigates the running app, e.g. `/product/p_coconut`.

@@ -4,6 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/presentation/widgets/auth_background.dart';
 import '../../../../core/presentation/widgets/donut_art.dart';
+import '../../../../core/presentation/widgets/drift_in.dart';
+import '../../../../core/presentation/widgets/staggered_entrance.dart';
 import '../../../../core/presentation/widgets/primary_button.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -44,16 +46,23 @@ class WelcomeScreen extends ConsumerWidget {
             child: Column(
               children: [
                 const Expanded(child: _Tiles()),
-                Text(
-                  l10n.welcomeTitle,
-                  style: AppTypography.display,
-                  textAlign: TextAlign.center,
+                // After the four tiles have slid in, the title fades up.
+                StaggeredEntrance(
+                  index: _tileCount + 1,
+                  child: Text(
+                    l10n.welcomeTitle,
+                    style: AppTypography.display,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                PrimaryButton(
-                  label: l10n.letsExplore,
-                  onPressed: explore,
-                  isLoading: busy,
+                StaggeredEntrance(
+                  index: _tileCount + 2,
+                  child: PrimaryButton(
+                    label: l10n.letsExplore,
+                    onPressed: explore,
+                    isLoading: busy,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
               ],
@@ -65,20 +74,32 @@ class WelcomeScreen extends ConsumerWidget {
   }
 }
 
+const int _tileCount = 4;
+const double _tileTravel = 70;
+const List<Color> _tileColors = [
+  AppColors.accentSoft,
+  AppColors.primary,
+  AppColors.tierGold,
+  AppColors.tierPlatinum,
+];
+
+/// Donut tiles slide in from alternating sides, one after another.
 class _Tiles extends StatelessWidget {
   const _Tiles();
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Wrap(
         spacing: AppSpacing.md,
         runSpacing: AppSpacing.md,
         children: [
-          _Tile(AppColors.accentSoft),
-          _Tile(AppColors.primary),
-          _Tile(AppColors.tierGold),
-          _Tile(AppColors.tierPlatinum),
+          for (final (i, color) in _tileColors.indexed)
+            DriftIn(
+              index: i,
+              from: Offset(i.isEven ? -_tileTravel : _tileTravel, 0),
+              child: _Tile(color),
+            ),
         ],
       ),
     );

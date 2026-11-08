@@ -5,6 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/presentation/widgets/auth_background.dart';
 import '../../../../core/presentation/widgets/donut_art.dart';
+import '../../../../core/presentation/widgets/drift_in.dart';
+import '../../../../core/presentation/widgets/staggered_entrance.dart';
 import '../../../../core/presentation/widgets/placeholder_sheet.dart';
 import '../../../../core/presentation/widgets/press_scale.dart';
 import '../../../../core/presentation/widgets/primary_button.dart';
@@ -40,20 +42,32 @@ class OnboardingScreen extends ConsumerWidget {
             child: Column(
               children: [
                 const Expanded(child: _Hero()),
-                Text(
-                  l10n.onboardingTitle,
-                  style: AppTypography.display,
-                  textAlign: TextAlign.center,
+                StaggeredEntrance(
+                  index: _heroCircles.length,
+                  child: Text(
+                    l10n.onboardingTitle,
+                    style: AppTypography.display,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                PrimaryButton(
-                  label: l10n.letsGetStarted,
-                  onPressed: () => begin(AuthIntent.register),
+                StaggeredEntrance(
+                  index: _heroCircles.length + 1,
+                  child: PrimaryButton(
+                    label: l10n.letsGetStarted,
+                    onPressed: () => begin(AuthIntent.register),
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.md),
-                _LoginRow(onLogin: () => begin(AuthIntent.login)),
+                StaggeredEntrance(
+                  index: _heroCircles.length + 2,
+                  child: _LoginRow(onLogin: () => begin(AuthIntent.login)),
+                ),
                 const SizedBox(height: AppSpacing.md),
-                const _SocialRow(),
+                StaggeredEntrance(
+                  index: _heroCircles.length + 3,
+                  child: const _SocialRow(),
+                ),
                 const SizedBox(height: AppSpacing.lg),
                 const LegalFooter(),
                 const SizedBox(height: AppSpacing.md),
@@ -66,12 +80,108 @@ class OnboardingScreen extends ConsumerWidget {
   }
 }
 
+/// One decorative circle: where it sits (alignment in the hero area), its
+/// size as a share of the hero width, colours, and where it drifts in from.
+typedef _HeroCircle = ({
+  Alignment at,
+  double size,
+  Color background,
+  Color icing,
+  Offset from,
+});
+
+const List<_HeroCircle> _heroCircles = [
+  (
+    at: Alignment(-0.1, -0.1),
+    size: 0.62,
+    background: AppColors.accentSoft,
+    icing: AppColors.accent,
+    from: Offset(0, 60),
+  ),
+  (
+    at: Alignment(-1.1, -0.8),
+    size: 0.42,
+    background: AppColors.primary,
+    icing: AppColors.accentSoft,
+    from: Offset(-90, -40),
+  ),
+  (
+    at: Alignment(1.15, -0.55),
+    size: 0.44,
+    background: AppColors.tierGold,
+    icing: AppColors.primary,
+    from: Offset(90, -30),
+  ),
+  (
+    at: Alignment(-0.95, 0.85),
+    size: 0.4,
+    background: AppColors.promo,
+    icing: AppColors.accentSoft,
+    from: Offset(-80, 60),
+  ),
+  (
+    at: Alignment(1.0, 0.9),
+    size: 0.38,
+    background: AppColors.tierPlatinum,
+    icing: AppColors.accent,
+    from: Offset(80, 70),
+  ),
+];
+
+/// Round food for every mood: donut circles that drift in one after another.
 class _Hero extends StatelessWidget {
   const _Hero();
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: DonutArt(size: 220));
+    return LayoutBuilder(
+      builder: (context, constraints) => Stack(
+        children: [
+          for (final (i, c) in _heroCircles.indexed)
+            Align(
+              alignment: c.at,
+              child: DriftIn(
+                index: i,
+                from: c.from,
+                child: _DonutCircle(
+                  diameter: constraints.maxWidth * c.size,
+                  background: c.background,
+                  icing: c.icing,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DonutCircle extends StatelessWidget {
+  const _DonutCircle({
+    required this.diameter,
+    required this.background,
+    required this.icing,
+  });
+
+  final double diameter;
+  final Color background;
+  final Color icing;
+
+  static const double _backgroundOpacity = 0.3;
+  static const double _donutShare = 0.72;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: diameter,
+      height: diameter,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: background.withValues(alpha: _backgroundOpacity),
+        shape: BoxShape.circle,
+      ),
+      child: DonutArt(size: diameter * _donutShare, icing: icing),
+    );
   }
 }
 

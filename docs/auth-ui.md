@@ -13,3 +13,8 @@
 
 Known gaps: illustration is a painted donut until bundled art is added; social icons use plain glyphs (no brand assets); font is the platform default pending a brand font.
 Tests: `test/features/auth/presentation/auth_flow_test.dart` (widget tests through the real router).
+
+## Entrance motion
+- **Onboarding**: five donut circles (`DriftIn`) glide in from different directions, one after another, then the title, Let's get started, login row, social icons and legal footer enter staggered (`StaggeredEntrance`, indices continue after the circles).
+- **Welcome**: four tiles slide in from alternating sides (`DriftIn`), then the title fades up and the button follows.
+- Under Reduce Motion both screens appear in place immediately. Tests: `test/features/auth/presentation/auth_motion_test.dart`.
