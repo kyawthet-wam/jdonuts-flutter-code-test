@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jdonuts/core/presentation/widgets/bottom_nav/crown_icon.dart';
 import 'package:jdonuts/core/router/app_routes.dart';
 
 import '../support/pump_app.dart';
@@ -48,6 +49,21 @@ void main() {
         await _scrollThrough(tester);
 
         expect(find.text('Order Online'), findsWidgets);
+      });
+
+      testApp('rewards lays out from top to bottom', (tester) async {
+        await pumpApp(
+          tester,
+          signedIn: true,
+          logicalSize: size,
+          textScale: _maxTextScale,
+        );
+        await tester.tap(find.byType(CrownIcon));
+        await tester.pumpAndSettle();
+
+        await _scrollThrough(tester);
+
+        expect(find.text('9/12'), findsOneWidget);
       });
 
       testApp('product detail lays out', (tester) async {

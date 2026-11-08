@@ -16,6 +16,10 @@ abstract final class AppMotion {
   static const Duration bannerAutoPlay = Duration(seconds: 4);
   static const Duration attentionPulse = Duration(milliseconds: 900);
 
+  /// How many times an attention cue pulses before it rests (a forever-looping
+  /// animation is distracting and drains battery).
+  static const int attentionPulseCycles = 3;
+
   /// Delay between consecutive items of a staggered entrance.
   static const Duration stagger = Duration(milliseconds: 70);
 

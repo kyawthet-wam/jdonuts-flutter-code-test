@@ -268,6 +268,96 @@ abstract class AppLocalizations {
   /// **'Couldn\'t refresh right now. Showing saved data.'**
   String get refreshFailed;
 
+  /// No description provided for @rewardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'J\' Donuts Rewards'**
+  String get rewardsTitle;
+
+  /// No description provided for @rewardsBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get rewardsBadge;
+
+  /// No description provided for @rewardsBadgeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} rewards'**
+  String rewardsBadgeLabel(int count);
+
+  /// No description provided for @totalPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Total points'**
+  String get totalPoints;
+
+  /// No description provided for @tabEarn.
+  ///
+  /// In en, this message translates to:
+  /// **'Eat more earn more'**
+  String get tabEarn;
+
+  /// No description provided for @tabGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift'**
+  String get tabGift;
+
+  /// No description provided for @tierHere.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re here now'**
+  String get tierHere;
+
+  /// No description provided for @tierAchieved.
+  ///
+  /// In en, this message translates to:
+  /// **'Achieved'**
+  String get tierAchieved;
+
+  /// No description provided for @tierSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll be here soon'**
+  String get tierSoon;
+
+  /// No description provided for @tierRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} pts Remaining to become {tier}'**
+  String tierRemaining(String points, String tier);
+
+  /// No description provided for @earn.
+  ///
+  /// In en, this message translates to:
+  /// **'EARN'**
+  String get earn;
+
+  /// No description provided for @earnLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn {points} points'**
+  String earnLabel(int points);
+
+  /// No description provided for @rewardPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} pts'**
+  String rewardPoints(String points);
+
+  /// No description provided for @challengeProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{current}/{target}'**
+  String challengeProgress(int current, int target);
+
+  /// No description provided for @giftsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Gifts are on their way.'**
+  String get giftsComingSoon;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:

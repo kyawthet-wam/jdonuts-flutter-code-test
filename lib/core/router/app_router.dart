@@ -13,6 +13,7 @@ import '../../features/auth/presentation/screens/splash_screen.dart';
 import '../../features/auth/presentation/screens/welcome_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/product/presentation/product_detail_screen.dart';
+import '../../features/rewards/presentation/rewards_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import 'app_routes.dart';
 import 'app_shell.dart';
@@ -67,7 +68,7 @@ final List<RouteBase> _routes = [
     builder: (_, _, shell) => AppShell(navigationShell: shell),
     branches: [
       _branch(AppRoutes.home, (_) => const HomeScreen()),
-      _branch(AppRoutes.rewards, (_) => _placeholder('rewards')),
+      _branch(AppRoutes.rewards, (_) => const RewardsScreen()),
       _branch(AppRoutes.explore, (_) => _placeholder('explore')),
       _branch(AppRoutes.wallet, (_) => _placeholder('wallet')),
       _branch(AppRoutes.settings, (_) => const SettingsScreen()),

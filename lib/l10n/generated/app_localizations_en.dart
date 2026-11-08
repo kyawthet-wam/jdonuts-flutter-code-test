@@ -118,6 +118,61 @@ class AppLocalizationsEn extends AppLocalizations {
       'Couldn\'t refresh right now. Showing saved data.';
 
   @override
+  String get rewardsTitle => 'J\' Donuts Rewards';
+
+  @override
+  String get rewardsBadge => 'Rewards';
+
+  @override
+  String rewardsBadgeLabel(int count) {
+    return '$count rewards';
+  }
+
+  @override
+  String get totalPoints => 'Total points';
+
+  @override
+  String get tabEarn => 'Eat more earn more';
+
+  @override
+  String get tabGift => 'Gift';
+
+  @override
+  String get tierHere => 'You\'re here now';
+
+  @override
+  String get tierAchieved => 'Achieved';
+
+  @override
+  String get tierSoon => 'You\'ll be here soon';
+
+  @override
+  String tierRemaining(String points, String tier) {
+    return '$points pts Remaining to become $tier';
+  }
+
+  @override
+  String get earn => 'EARN';
+
+  @override
+  String earnLabel(int points) {
+    return 'Earn $points points';
+  }
+
+  @override
+  String rewardPoints(String points) {
+    return '$points pts';
+  }
+
+  @override
+  String challengeProgress(int current, int target) {
+    return '$current/$target';
+  }
+
+  @override
+  String get giftsComingSoon => 'Gifts are on their way.';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
