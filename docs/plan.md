@@ -78,9 +78,9 @@ Tests: unit (validators, use cases), widget (login/registration validation), one
 
 1. [x] Scaffold, CLAUDE.md, style rules, fvm pin, gitignore.
 2. [x] Dependencies + analyzer (riverpod_lint plugin; no custom_lint), l10n, folders.
-3. [ ] Core foundations: design tokens/theme, motion file, Result/Failure, app shell (ProviderScope, theme, l10n).
-4. [ ] Task 1 domain: validators + unit tests.
-5. [ ] Task 1 auth: repository, fake impl, secure session, router + redirect guard (+ guard unit tests), screens 1-7, OTP input, registration ring.
+3. [x] Core foundations: design tokens/theme, motion file, Result/Failure, app shell (ProviderScope, theme, l10n).
+4. [x] Task 1 domain: validators + unit tests.
+5. [~] Task 1 auth. Done: repository, use cases, fake impl, secure session, session notifier, router + redirect guard (+ tests), placeholder screens. TODO: real screens 1-7 (shared widgets, onboarding, phone, OTP input, name, dob, welcome), registration flow state, progress ring, widget tests.
 6. [ ] Data layer: Drift schema + migrations, JSON seed, image assets, repositories, connectivity, background refresh, optional mock server + Dio client.
 7. [ ] Task 2: Home, Product detail, cart.
 8. [ ] Task 3: Rewards painters, animations, bottom nav.
@@ -94,6 +94,6 @@ User tasks: screen recording (2-4 min: register, log out, log in, Home, Product,
 Offline data 20, Motion/presentation 20, Architecture/code quality 20, UI fidelity 15, Validation/flow 10, Tests 10, Delivery 5. Auto-fail: doesn't build from README steps, crashes in main flow, or data hard-coded inside widgets.
 
 ## Environment notes
-- Dart MCP server configured in `.mcp.json` (ignored by git; takes effect after session restart). Package skills tool found none for our dependencies.
+- Dart MCP server configured in `.mcp.json` (ignored by git; optional, not needed: analyze/test/run via `fvm` in the terminal; screenshots via `xcrun simctl io booted screenshot`). Package skills tool found none for our dependencies.
 - Android SDK present; licences not accepted yet. iOS simulators available (iPhone 16 family, iOS 18.3).
 - Design assets are not available: generate placeholder donut/coffee/banner/avatar art as bundled seed images; fonts approximated with a close Google Font (note in README).
