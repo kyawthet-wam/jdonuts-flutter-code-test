@@ -152,6 +152,8 @@ void main() {
     test(
       'upgrading from v1 adds the cart table and keeps existing data',
       () async {
+        // Two databases coexist on purpose: the seeded one and a legacy v1 one.
+        driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
         final v1 = AppDatabase(
           NativeDatabase.memory(
             setup: (raw) {
