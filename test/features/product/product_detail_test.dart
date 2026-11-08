@@ -60,6 +60,20 @@ void main() {
     await tester.pump(const Duration(seconds: 2));
   });
 
+  testApp('leaving right after adding to the cart causes no late errors', (
+    tester,
+  ) async {
+    await _openCoconut(tester);
+    await tester.tap(find.textContaining('ADD TO CART'));
+    await tester.pump(const Duration(milliseconds: 100));
+
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 3)); // past the 1.5s reset
+
+    expect(tester.takeException(), isNull);
+  });
+
   testApp('an unknown product shows an unavailable message', (tester) async {
     await pumpApp(tester, signedIn: true);
     await pushRoute(tester, AppRoutes.product('does_not_exist'));

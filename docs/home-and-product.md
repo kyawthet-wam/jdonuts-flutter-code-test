@@ -22,3 +22,7 @@ Tests: `test/features/home/home_screen_test.dart`, `test/features/product/*`. Wi
 ## Refresh errors and text scale
 - Pull-to-refresh: a server/timeout failure shows "Couldn't refresh right now. Showing saved data." and the screen keeps its local data. While offline it stays quiet because the offline banner already says so; with no server configured it is a silent no-op. Background refreshes never show messages.
 - Text scale: fixed-height rows (banner, product rows, shop cards) use `context.scaledHeight(base)` so they grow with the user's text size instead of overflowing. `test/features/layout_test.dart` renders onboarding, phone step, Home (scrolled end to end) and Product detail at 360x640 and 440x956 with text scale 1.3; the test font is wider than real fonts, so this is a strict check.
+
+## Integration test
+`integration_test/app_flow_test.dart` drives the real app (real router, real Drift in memory, real bundled seed) on a simulator or emulator: Register (phone -> OTP -> name -> date of birth -> Welcome) -> Home -> Product detail -> quantity -> Add to cart -> back, and Register -> Log out -> Log in -> Home. Only storage is isolated (in-memory), so it never depends on device state. Run with `fvm flutter test integration_test -d SIMULATOR_ID`. It waits in real time for each fake-backend step instead of relying on fake-async pumping.
+It caught a real bug: the "added to cart" confirmation reset its state 1.5s later even after leaving the screen (disposed notifier). It now uses a cancellable timer, with a widget regression test.

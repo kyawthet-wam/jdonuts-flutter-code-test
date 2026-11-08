@@ -17,17 +17,26 @@ class _AddToCartButton extends HookConsumerWidget {
     final justAdded = useState(false);
     final total = formatThousands(context, product.priceMmk * quantity);
 
+    // A cancellable Timer (not Future.delayed) so leaving the screen cannot
+    // touch disposed state 1.5s later.
+    final resetTimer = useRef<Timer?>(null);
+    useEffect(
+      () =>
+          () => resetTimer.value?.cancel(),
+      const [],
+    );
+
     Future<void> add() async {
       isAdding.value = true;
       final result = await ref.read(addToCartProvider)(product.id, quantity);
+      if (!context.mounted) return;
       isAdding.value = false;
-      if (!result.isOk || !context.mounted) return;
+      if (!result.isOk) return;
       justAdded.value = true;
-      unawaited(
-        Future<void>.delayed(
-          _addedFeedbackDuration,
-          () => justAdded.value = false,
-        ),
+      resetTimer.value?.cancel();
+      resetTimer.value = Timer(
+        _addedFeedbackDuration,
+        () => justAdded.value = false,
       );
     }
 
