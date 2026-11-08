@@ -10,14 +10,16 @@ import 'catalog_writer.dart';
 /// refresh simply updates it. With no server configured it is a no-op.
 class CatalogSync {
   CatalogSync({
-    required this._remote,
-    required this._writer,
-    required this._connectivity,
+    required this.remote,
+    required this.writer,
+    required this.connectivity,
   });
 
-  final RemoteCatalogSource? _remote;
-  final CatalogWriter _writer;
-  final ConnectivityService _connectivity;
+  /// Null when no server is configured. Fields are public because older Dart
+  /// versions reject private named parameters (`required this._remote`).
+  final RemoteCatalogSource? remote;
+  final CatalogWriter writer;
+  final ConnectivityService connectivity;
 
   Future<Result<void>>? _inFlight;
 
@@ -27,15 +29,15 @@ class CatalogSync {
       _inFlight ??= _run().whenComplete(() => _inFlight = null);
 
   Future<Result<void>> _run() async {
-    final remote = _remote;
-    if (remote == null) return const Result.ok(null);
-    if (!await _connectivity.isOnline()) {
+    final source = remote;
+    if (source == null) return const Result.ok(null);
+    if (!await connectivity.isOnline()) {
       return const Result.err(NetworkFailure());
     }
-    final fetched = await remote.fetchCatalog();
+    final fetched = await source.fetchCatalog();
     return fetched.when(
       ok: (snapshot) async {
-        await _writer.replaceAll(snapshot);
+        await writer.replaceAll(snapshot);
         return const Result<void>.ok(null);
       },
       err: (failure) async => Result<void>.err(failure),

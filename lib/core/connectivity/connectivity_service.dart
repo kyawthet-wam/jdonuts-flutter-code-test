@@ -35,17 +35,20 @@ abstract interface class ConnectivityService {
 class PluginConnectivityService implements ConnectivityService {
   PluginConnectivityService({
     Connectivity? connectivity,
-    this._reachability = dnsReachability,
+    this.reachability = dnsReachability,
   }) : _connectivity = connectivity ?? Connectivity();
 
   final Connectivity _connectivity;
-  final ReachabilityCheck _reachability;
+
+  /// Public (not `_reachability`) because older Dart versions reject private
+  /// named parameters.
+  final ReachabilityCheck reachability;
 
   @override
   Future<bool> isOnline() async {
     final results = await _connectivity.checkConnectivity();
     if (results.every((r) => r == ConnectivityResult.none)) return false;
-    return _reachability();
+    return reachability();
   }
 
   @override
