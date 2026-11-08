@@ -40,7 +40,7 @@ void main() {
   testWidgets('launching logged out opens onboarding', (tester) async {
     await _launch(tester, InMemoryKeyValueStore());
 
-    expect(find.text('onboarding'), findsOneWidget);
+    expect(find.text("LET'S GET STARTED"), findsOneWidget);
   });
 
   testWidgets('launching with a stored session opens home', (tester) async {
@@ -59,6 +59,6 @@ void main() {
     await tester.tap(find.text('Log out'));
     await tester.pumpAndSettle();
 
-    expect(find.text('onboarding'), findsOneWidget);
+    expect(find.text("LET'S GET STARTED"), findsOneWidget);
   });
 }

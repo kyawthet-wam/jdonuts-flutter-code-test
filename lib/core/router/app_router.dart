@@ -4,10 +4,18 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../features/auth/domain/entities/session_status.dart';
 import '../../features/auth/presentation/providers/auth_providers.dart';
+import '../../features/auth/presentation/screens/date_of_birth_screen.dart';
+import '../../features/auth/presentation/screens/name_screen.dart';
+import '../../features/auth/presentation/screens/onboarding_screen.dart';
+import '../../features/auth/presentation/screens/otp_screen.dart';
+import '../../features/auth/presentation/screens/phone_screen.dart';
+import '../../features/auth/presentation/screens/splash_screen.dart';
+import '../../features/auth/presentation/screens/welcome_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import 'app_routes.dart';
 import 'app_shell.dart';
 import 'auth_redirect.dart';
+import 'page_transitions.dart';
 import 'placeholder_screen.dart';
 
 part 'app_router.g.dart';
@@ -39,13 +47,13 @@ GoRouter appRouter(Ref ref) {
 Widget _placeholder(String title) => PlaceholderScreen(title: title);
 
 final List<RouteBase> _routes = [
-  _screen(AppRoutes.splash, 'splash'),
-  _screen(AppRoutes.onboarding, 'onboarding'),
-  _screen(AppRoutes.phone, 'phone'),
-  _screen(AppRoutes.otp, 'otp'),
-  _screen(AppRoutes.name, 'name'),
-  _screen(AppRoutes.dateOfBirth, 'date of birth'),
-  _screen(AppRoutes.welcome, 'welcome'),
+  _page(AppRoutes.splash, fadePage, const SplashScreen()),
+  _page(AppRoutes.onboarding, fadePage, const OnboardingScreen()),
+  _page(AppRoutes.phone, stepPage, const PhoneScreen()),
+  _page(AppRoutes.otp, stepPage, const OtpScreen()),
+  _page(AppRoutes.name, stepPage, const NameScreen()),
+  _page(AppRoutes.dateOfBirth, stepPage, const DateOfBirthScreen()),
+  _page(AppRoutes.welcome, fadePage, const WelcomeScreen()),
   GoRoute(
     path: AppRoutes.productPattern,
     builder: (_, state) =>
@@ -63,8 +71,18 @@ final List<RouteBase> _routes = [
   ),
 ];
 
-GoRoute _screen(String path, String title) =>
-    GoRoute(path: path, builder: (_, _) => _placeholder(title));
+typedef _PageBuilder = Page<void> Function(
+  BuildContext context,
+  GoRouterState state,
+  Widget child,
+);
+
+GoRoute _page(String path, _PageBuilder page, Widget screen) {
+  return GoRoute(
+    path: path,
+    pageBuilder: (context, state) => page(context, state, screen),
+  );
+}
 
 StatefulShellBranch _branch(String path, WidgetBuilder builder) {
   return StatefulShellBranch(

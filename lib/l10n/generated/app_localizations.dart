@@ -94,7 +94,7 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('en')];
 
-  /// Application name
+  /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
   /// **'J\'Donuts'**
@@ -105,6 +105,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coming soon'**
   String get comingSoon;
+
+  /// No description provided for @demoOnlyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This isn\'t available in the demo.'**
+  String get demoOnlyMessage;
 
   /// No description provided for @settingsTitle.
   ///
@@ -147,6 +153,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get navSettings;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE'**
+  String get continueLabel;
+
+  /// No description provided for @legalPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you acknowledge that you have read and agree to our '**
+  String get legalPrefix;
+
+  /// No description provided for @termsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get termsOfUse;
+
+  /// No description provided for @legalAnd.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get legalAnd;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @genericError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get genericError;
+
+  /// No description provided for @onboardingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Round food for every mood'**
+  String get onboardingTitle;
+
+  /// No description provided for @letsGetStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'LET\'S GET STARTED'**
+  String get letsGetStarted;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get alreadyHaveAccount;
+
+  /// No description provided for @logIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get continueWithGoogle;
+
+  /// No description provided for @continueWithApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple'**
+  String get continueWithApple;
+
+  /// No description provided for @continueWithFacebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get continueWithFacebook;
+
+  /// No description provided for @phoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get phoneTitle;
+
+  /// No description provided for @phoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'09 xxx xxx xxx'**
+  String get phoneHint;
+
+  /// No description provided for @errorPhoneEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number.'**
+  String get errorPhoneEmpty;
+
+  /// No description provided for @errorPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid Myanmar number, e.g. 09 254 135 592.'**
+  String get errorPhoneInvalid;
+
+  /// No description provided for @notRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'This number isn\'t registered yet. '**
+  String get notRegistered;
+
+  /// No description provided for @registerLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get registerLink;
+
+  /// No description provided for @verifyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your number'**
+  String get verifyTitle;
+
+  /// No description provided for @otpSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent 6 digit OTP to {phone}'**
+  String otpSentTo(String phone);
+
+  /// No description provided for @didntReceiveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code?'**
+  String get didntReceiveCode;
+
+  /// No description provided for @resendIn.
+  ///
+  /// In en, this message translates to:
+  /// **'resend in '**
+  String get resendIn;
+
+  /// No description provided for @resendTime.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} min'**
+  String resendTime(String time);
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get resendCode;
+
+  /// No description provided for @otpWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect code. {remaining, plural, =1{1 attempt} other{{remaining} attempts}} left.'**
+  String otpWrong(int remaining);
+
+  /// No description provided for @otpLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong codes. Tap Resend to try again.'**
+  String get otpLocked;
+
+  /// No description provided for @nameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s your name?'**
+  String get nameTitle;
+
+  /// No description provided for @firstNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get firstNameHint;
+
+  /// No description provided for @lastNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lastNameHint;
+
+  /// No description provided for @errorNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first name.'**
+  String get errorNameRequired;
+
+  /// No description provided for @errorNameInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Use letters and spaces only.'**
+  String get errorNameInvalid;
+
+  /// No description provided for @errorNameTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 50 characters or fewer.'**
+  String get errorNameTooLong;
+
+  /// No description provided for @dobTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s your date of birth?'**
+  String get dobTitle;
+
+  /// No description provided for @monthHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get monthHint;
+
+  /// No description provided for @dayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get dayHint;
+
+  /// No description provided for @yearHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get yearHint;
+
+  /// No description provided for @errorDobIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full date of birth.'**
+  String get errorDobIncomplete;
+
+  /// No description provided for @errorDobInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That date doesn\'t exist.'**
+  String get errorDobInvalid;
+
+  /// No description provided for @errorDobFuture.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth can\'t be in the future.'**
+  String get errorDobFuture;
+
+  /// No description provided for @errorDobTooYoung.
+  ///
+  /// In en, this message translates to:
+  /// **'You must be at least {age} years old.'**
+  String errorDobTooYoung(int age);
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to the world of J\'donuts'**
+  String get welcomeTitle;
+
+  /// No description provided for @letsExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'LET\'S EXPLORE'**
+  String get letsExplore;
 }
 
 class _AppLocalizationsDelegate

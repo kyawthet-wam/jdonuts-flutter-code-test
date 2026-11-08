@@ -5,7 +5,9 @@ import '../../../../core/storage/key_value_store.dart';
 import '../../data/fake_auth_repository.dart';
 import '../../domain/entities/auth_user.dart';
 import '../../domain/entities/session_status.dart';
+import '../../../../core/time/clock.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../domain/use_cases/auth_use_cases.dart';
 
 part 'auth_providers.g.dart';
 
@@ -17,6 +19,18 @@ KeyValueStore keyValueStore(Ref ref) => const SecureKeyValueStore();
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(Ref ref) =>
     FakeAuthRepository(ref.watch(keyValueStoreProvider));
+
+@riverpod
+RequestOtp requestOtp(Ref ref) => RequestOtp(ref.watch(authRepositoryProvider));
+
+@riverpod
+VerifyOtp verifyOtp(Ref ref) => VerifyOtp(ref.watch(authRepositoryProvider));
+
+@riverpod
+CompleteRegistration completeRegistration(Ref ref) => CompleteRegistration(
+  ref.watch(authRepositoryProvider),
+  ref.watch(clockProvider),
+);
 
 /// The signed-in user, restored from storage on launch.
 @Riverpod(keepAlive: true)

@@ -29,3 +29,6 @@ String sanitizeOtpPaste(String pasted) {
   final digits = pasted.replaceAll(RegExp(r'\D'), '');
   return digits.length > otpLength ? digits.substring(0, otpLength) : digits;
 }
+
+/// How long before the code can be requested again.
+const Duration otpResendCooldown = Duration(minutes: 5);
