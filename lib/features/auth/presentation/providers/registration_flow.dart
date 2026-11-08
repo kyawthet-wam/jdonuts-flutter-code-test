@@ -40,7 +40,16 @@ abstract class RegistrationFlowState with _$RegistrationFlowState {
 }
 
 /// What happened when the user submitted a code.
-enum OtpSubmitOutcome { continueRegistration, signedIn, wrong, locked, failed }
+enum OtpSubmitOutcome {
+  continueRegistration,
+  signedIn,
+  wrong,
+  locked,
+  failed,
+
+  /// A check was already running, so this submission was dropped.
+  ignored,
+}
 
 extension OtpSubmitOutcomeX on OtpSubmitOutcome {
   bool get isContinueRegistration =>
@@ -49,6 +58,7 @@ extension OtpSubmitOutcomeX on OtpSubmitOutcome {
   bool get isWrong => this == OtpSubmitOutcome.wrong;
   bool get isLocked => this == OtpSubmitOutcome.locked;
   bool get isFailed => this == OtpSubmitOutcome.failed;
+  bool get isIgnored => this == OtpSubmitOutcome.ignored;
 }
 
 /// Drives login and registration across the step screens.
@@ -103,7 +113,7 @@ class RegistrationFlow extends _$RegistrationFlow {
   Future<Result<void>> resendOtp() => submitPhone();
 
   Future<OtpSubmitOutcome> submitOtp(String code) async {
-    if (state.isBusy) return OtpSubmitOutcome.failed;
+    if (state.isBusy) return OtpSubmitOutcome.ignored;
     if (state.isOtpLocked) return OtpSubmitOutcome.locked;
     state = state.copyWith(isBusy: true);
     final result = await ref.read(verifyOtpProvider)(state.phoneE164!, code);

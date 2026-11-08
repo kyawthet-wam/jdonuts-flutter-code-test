@@ -73,7 +73,9 @@ class OtpScreen extends HookConsumerWidget {
             controller: controller,
             onCompleted: submit,
             shakeSignal: shakes.value,
-            enabled: !flow.isOtpLocked && !flow.isBusy,
+            // Stays enabled while a code is being checked: disabling it drops focus
+            // and the keyboard, so the user couldn't retype after a wrong code.
+            enabled: !flow.isOtpLocked,
             hasError: flow.wrongOtpCount > 0,
           ),
           _OtpMessage(flow),

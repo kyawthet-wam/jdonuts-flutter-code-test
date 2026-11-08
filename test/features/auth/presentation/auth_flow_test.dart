@@ -86,6 +86,22 @@ void main() {
       expect(find.textContaining('2 attempts left'), findsOneWidget);
     });
 
+    testWidgets('the code field stays usable after a wrong code', (t) async {
+      await _reachOtpStep(t);
+      await _enter(t, '111111');
+
+      expect(t.widget<TextField>(find.byType(TextField)).enabled, isTrue);
+    });
+
+    testWidgets('the code field is disabled once locked', (t) async {
+      await _reachOtpStep(t);
+      for (var i = 0; i < 3; i++) {
+        await _enter(t, '111111');
+      }
+
+      expect(t.widget<TextField>(find.byType(TextField)).enabled, isFalse);
+    });
+
     testWidgets('three wrong codes lock entry until Resend', (t) async {
       await _reachOtpStep(t);
       for (var i = 0; i < 3; i++) {
