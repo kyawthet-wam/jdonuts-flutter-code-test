@@ -3,6 +3,7 @@
   "appTitle": "J'Donuts",
   "comingSoon": "Coming soon",
   "demoOnlyMessage": "This isn't available in the demo.",
+  "offlineBanner": "You're offline. Showing saved data.",
   "settingsTitle": "Settings",
   "logOut": "Log out",
   "navHome": "Home",

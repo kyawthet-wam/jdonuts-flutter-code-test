@@ -19,6 +19,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get demoOnlyMessage => 'This isn\'t available in the demo.';
 
   @override
+  String get offlineBanner => 'You\'re offline. Showing saved data.';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override

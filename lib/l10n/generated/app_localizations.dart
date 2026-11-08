@@ -112,6 +112,12 @@ abstract class AppLocalizations {
   /// **'This isn\'t available in the demo.'**
   String get demoOnlyMessage;
 
+  /// No description provided for @offlineBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline. Showing saved data.'**
+  String get offlineBanner;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
