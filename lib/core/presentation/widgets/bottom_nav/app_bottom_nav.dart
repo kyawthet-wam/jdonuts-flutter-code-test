@@ -24,6 +24,12 @@ const double _shadowBlur = 16;
 /// never touch it.
 const double _pillInset = 4;
 const double _pillBorder = 1.5;
+
+/// Share of the bottom safe-area inset kept as bar padding.
+const double _safeAreaShare = 0.5;
+
+/// How far up the bar the pink backdrop rises (fraction of bar height).
+const double _backdropHeight = 0.5;
 const double _iconSize = 24;
 
 /// Blue bar with white icons, inset from the screen sides, rounded only at the
@@ -47,27 +53,38 @@ class AppBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // The shell sets `extendBody`, so page content runs behind the bar's
-    // rounded top corners and its soft shadow.
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-          color: AppColors.primary,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(_barRadius)),
-          boxShadow: [
-            BoxShadow(color: AppColors.shadow, blurRadius: _shadowBlur),
-          ],
-        ),
-        // Inside the decoration so the blue also covers the safe area below.
-        child: SafeArea(
-          top: false,
-          child: Padding(
-            padding: const EdgeInsets.all(_barPadding),
-            child: LayoutBuilder(builder: _buildBar),
+    // Only part of the home-indicator inset is kept as padding: the indicator
+    // is thin, so a full inset would make the bar needlessly tall.
+    final inset = MediaQuery.paddingOf(context).bottom * _safeAreaShare;
+    final bottomPadding = inset < _barPadding ? _barPadding : inset;
+    // The shell sets `extendBody`, so page content runs behind the bar.
+    return Stack(
+      children: [
+        const _PinkBackdrop(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+          child: DecoratedBox(
+            decoration: const BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(_barRadius),
+              ),
+              boxShadow: [
+                BoxShadow(color: AppColors.shadow, blurRadius: _shadowBlur),
+              ],
+            ),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                _barPadding,
+                _barPadding,
+                _barPadding,
+                bottomPadding,
+              ),
+              child: LayoutBuilder(builder: _buildBar),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 
@@ -110,6 +127,23 @@ class AppBottomNav extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Pink band behind the bar, visible in the strips either side of it (the
+/// design has this accent rising to about half the bar's height).
+class _PinkBackdrop extends StatelessWidget {
+  const _PinkBackdrop();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Positioned.fill(
+      child: FractionallySizedBox(
+        heightFactor: _backdropHeight,
+        alignment: Alignment.bottomCenter,
+        child: ColoredBox(color: AppColors.accent),
       ),
     );
   }

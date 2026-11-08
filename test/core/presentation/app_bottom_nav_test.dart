@@ -77,6 +77,34 @@ Rect _pillRect(WidgetTester tester) {
 }
 
 void main() {
+  testWidgets('stays compact with a home-indicator inset', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: MediaQuery(
+          data: const MediaQueryData(padding: EdgeInsets.only(bottom: 34)),
+          child: const Scaffold(bottomNavigationBar: _Nav()),
+        ),
+      ),
+    );
+
+    expect(
+      tester.getSize(find.byType(AppBottomNav)).height,
+      lessThanOrEqualTo(72),
+    );
+  });
+
+  testWidgets('has a pink backdrop behind the bar', (tester) async {
+    await tester.pumpWidget(_host());
+
+    final pink = find.byWidgetPredicate(
+      (w) => w is ColoredBox && w.color == AppColors.accent,
+    );
+    expect(pink, findsOneWidget);
+    final bar = tester.getRect(find.byType(AppBottomNav));
+    expect(tester.getRect(pink).bottom, bar.bottom);
+    expect(tester.getRect(pink).top, greaterThan(bar.top));
+  });
+
   testWidgets('the selected icon is inside the pill with breathing room', (
     tester,
   ) async {
