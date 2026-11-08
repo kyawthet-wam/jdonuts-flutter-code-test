@@ -111,7 +111,7 @@ FILES = {
 for name, (c1, c2, ic) in {
     "banner_central": ("#6C4BD9", "#4A2FA8", "#F7A8CB"),
     "banner_hot": ("#5BCFEB", "#2FB4D6", "#EE5AA0"),
-    "banner_festive": ("#FF7A1A", "#E5484D", "#fff"),
+    "banner_festive": ("#FF7A1A", "#E5484D", "#F7A8CB"),
 }.items():
     FILES[name] = banner(c1, c2, ic)
 for name, roof in {"shop_myaynigone": "#EE5AA0", "shop_townships": "#5BCFEB",

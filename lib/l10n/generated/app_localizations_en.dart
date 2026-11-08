@@ -22,6 +22,98 @@ class AppLocalizationsEn extends AppLocalizations {
   String get offlineBanner => 'You\'re offline. Showing saved data.';
 
   @override
+  String get tierBronze => 'Bronze';
+
+  @override
+  String get tierSilver => 'Silver';
+
+  @override
+  String get tierGold => 'Gold';
+
+  @override
+  String get tierPlatinum => 'Platinum';
+
+  @override
+  String tierMember(String tier) {
+    return '$tier member';
+  }
+
+  @override
+  String pointsLeft(String points, String tier) {
+    return '$points points left to become $tier Member';
+  }
+
+  @override
+  String notificationsLabel(int count) {
+    return 'Notifications, $count unread';
+  }
+
+  @override
+  String seeAll(String section) {
+    return 'See all $section';
+  }
+
+  @override
+  String get newBadge => 'New';
+
+  @override
+  String discountOff(int percent) {
+    return '$percent% off';
+  }
+
+  @override
+  String shopsNearYou(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'are $count J\'Donut shops',
+      one: 'is 1 J\'Donut shop',
+    );
+    return 'There $_temp0 near you.';
+  }
+
+  @override
+  String get exploreNow => 'EXPLORE NOW';
+
+  @override
+  String get orderOnline => 'Order Online';
+
+  @override
+  String get sectionError => 'Couldn\'t load this section.';
+
+  @override
+  String get tryAgain => 'Try again';
+
+  @override
+  String get sectionEmpty => 'Nothing here yet.';
+
+  @override
+  String priceMmk(String amount) {
+    return '$amount MMK';
+  }
+
+  @override
+  String get whatsThis => 'What\'s this?';
+
+  @override
+  String get addToCart => 'ADD TO CART';
+
+  @override
+  String get addedToCart => 'ADDED TO CART';
+
+  @override
+  String get productUnavailable => 'This product isn\'t available.';
+
+  @override
+  String get quantityLabel => 'Quantity';
+
+  @override
+  String get decreaseQuantity => 'Decrease quantity';
+
+  @override
+  String get increaseQuantity => 'Increase quantity';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override

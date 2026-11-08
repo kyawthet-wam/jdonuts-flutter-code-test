@@ -97,6 +97,47 @@ final class CartRepositoryProvider
 
 String _$cartRepositoryHash() => r'4219980ed3b5e38b62b7e5a6dbb26c388b1b2f84';
 
+@ProviderFor(addToCart)
+final addToCartProvider = AddToCartProvider._();
+
+final class AddToCartProvider
+    extends $FunctionalProvider<AddToCart, AddToCart, AddToCart>
+    with $Provider<AddToCart> {
+  AddToCartProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'addToCartProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$addToCartHash();
+
+  @$internal
+  @override
+  $ProviderElement<AddToCart> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AddToCart create(Ref ref) {
+    return addToCart(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AddToCart value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AddToCart>(value),
+    );
+  }
+}
+
+String _$addToCartHash() => r'93215aef6140f88b8822a4d9fa8f26378fb550ed';
+
 @ProviderFor(product)
 final productProvider = ProductFamily._();
 

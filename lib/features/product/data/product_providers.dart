@@ -4,6 +4,7 @@ import '../../../core/database/database_providers.dart';
 import '../domain/entities/cart_line.dart';
 import '../domain/entities/product.dart';
 import '../domain/repositories/cart_repository.dart';
+import '../domain/use_cases/add_to_cart.dart';
 import '../domain/repositories/product_repository.dart';
 import 'drift_cart_repository.dart';
 import 'drift_product_repository.dart';
@@ -17,6 +18,9 @@ ProductRepository productRepository(Ref ref) =>
 @Riverpod(keepAlive: true)
 CartRepository cartRepository(Ref ref) =>
     DriftCartRepository(ref.watch(appDatabaseProvider));
+
+@riverpod
+AddToCart addToCart(Ref ref) => AddToCart(ref.watch(cartRepositoryProvider));
 
 @riverpod
 Stream<Product?> product(Ref ref, String id) async* {

@@ -11,6 +11,8 @@ import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_screen.dart';
 import '../../features/auth/presentation/screens/splash_screen.dart';
 import '../../features/auth/presentation/screens/welcome_screen.dart';
+import '../../features/home/presentation/home_screen.dart';
+import '../../features/product/presentation/product_detail_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import 'app_routes.dart';
 import 'app_shell.dart';
@@ -56,13 +58,15 @@ final List<RouteBase> _routes = [
   _page(AppRoutes.welcome, fadePage, const WelcomeScreen()),
   GoRoute(
     path: AppRoutes.productPattern,
-    builder: (_, state) =>
-        _placeholder('product ${state.pathParameters['id']}'),
+    builder: (_, state) => ProductDetailScreen(
+      id: state.pathParameters['id']!,
+      heroTag: state.extra as String?,
+    ),
   ),
   StatefulShellRoute.indexedStack(
     builder: (_, _, shell) => AppShell(navigationShell: shell),
     branches: [
-      _branch(AppRoutes.home, (_) => _placeholder('home')),
+      _branch(AppRoutes.home, (_) => const HomeScreen()),
       _branch(AppRoutes.rewards, (_) => _placeholder('rewards')),
       _branch(AppRoutes.explore, (_) => _placeholder('explore')),
       _branch(AppRoutes.wallet, (_) => _placeholder('wallet')),
