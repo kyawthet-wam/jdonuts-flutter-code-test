@@ -15,21 +15,21 @@ class BottomNavItem {
 }
 
 const double _barPadding = AppSpacing.sm;
-const double _pillHeight = 36;
-const double _barRadius = 32;
+const double _pillHeight = 46;
+const double _barRadius = 26;
 const double _activeSlotWidth = 108;
 const double _shadowBlur = 16;
 
 /// Space between the pill's edge and its slot's edge, so neighbouring icons
 /// never touch it.
-const double _pillInset = 4;
+const double _pillInset = 3;
 const double _pillBorder = 1.5;
 
 /// Share of the bottom safe-area inset kept as bar padding.
-const double _safeAreaShare = 0.5;
+const double _safeAreaShare = 0.8;
 
 /// How far up the bar the pink backdrop rises (fraction of bar height).
-const double _backdropHeight = 0.5;
+const double _backdropHeight = 0.55;
 const double _iconSize = 24;
 
 /// Blue bar with white icons, inset from the screen sides, rounded only at the

@@ -89,7 +89,7 @@ void main() {
 
     expect(
       tester.getSize(find.byType(AppBottomNav)).height,
-      lessThanOrEqualTo(72),
+      lessThanOrEqualTo(90),
     );
   });
 
